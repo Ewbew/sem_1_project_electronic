@@ -95,6 +95,8 @@ int main(void)
     // Her skal vi konstant køre
     while (1) 
     {
+		
+		
     }
 }
 
