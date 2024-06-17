@@ -152,6 +152,9 @@
     <Compile Include="main.cpp">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Motor.cpp">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Motor.h">
       <SubType>compile</SubType>
     </Compile>

@@ -32,6 +32,8 @@ bool DrivingControl::get_lights_state() {
 	return *counter_pointer_ < 6 || (*counter_pointer_ >= 7 && *counter_pointer_ < 11);
 }
 
+
+// TO - DO: Rewrite code, so we don't decrement and then increment counter_pointer – can result in major errors!
 bool DrivingControl::get_brake_state(){
 	(*counter_pointer_)--;
 	int previous_speed = get_speed();
