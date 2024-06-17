@@ -7,29 +7,33 @@
 
 #include "DrivingControl.h"
 
-const uint8_t SPEED_LEVELS[] = {100, 90, 65, 50, 90, 50, 50, 50, 80, 80, 50, 0};
-const uint8_t MAX_COUNTER = sizeof(SPEED_LEVELS) / sizeof(SPEED_LEVELS[0]);
+const int SPEED_LEVELS[] = {100, 90, 65, 50, 90, 50, 50, 50, 80, 80, 50, 0};
+const int MAX_COUNTER = sizeof(SPEED_LEVELS) / sizeof(SPEED_LEVELS[0]);
 
-DrivingControl::DrivingControl(int* counter_pointer):counter_pointer_(counter_pointer){}
+DrivingControl::DrivingControl(): counter(0) {}
 
 
 // OBS: Disse værdier skal ændres indtil at bilen kører igennem uden for mange fejl; de bestemmes gennem testkørlser.
 // OBS: Det kan være, at bilen bliver nødt til at få sat speed til 0, i stedet for bare at skifte retning.
 int DrivingControl::get_speed() {
-	if (*counter_pointer_ >= 0 && *counter_pointer_ < MAX_COUNTER) {
-		return SPEED_LEVELS[*counter_pointer_];
+	if (counter >= 0 && counter < MAX_COUNTER) {
+		return SPEED_LEVELS[counter];
 		} else {
 		return -1;
 	}
 }
 
+void DrivingControl::increment_counter(){
+	counter++;
+}
+
 bool DrivingControl::is_forward_direction() {
-	return *counter_pointer_ < 6 || *counter_pointer_ >= 8;
+	return counter < 6 || counter >= 8;
 }
 
 // if-statements følger samme logik som get_speed()
 bool DrivingControl::get_lights_state() {
-	return *counter_pointer_ < 6 || (*counter_pointer_ >= 7 && *counter_pointer_ < 11);
+	return counter < 6 || (counter >= 7 && counter < 11);
 }
 
 bool DrivingControl::get_brake_state(){

@@ -17,14 +17,7 @@
 // som aktiveres ved et tryk på en eksterne knap på bilen
 volatile bool start = false;
 
-// counter for refleksbrik
-volatile int counter = 0;
-
-// Vi laver en pointer, som skal pege på 'counter'
-volatile int* pointer_counter = &counter;
-
-// To-do: Initier en instans af driving control class, 
-
+DrivingControl control;
 
 // Interrupt rutine for start af bil:
 ISR(INT0_vect){
@@ -37,7 +30,7 @@ ISR(INT0_vect){
 // TO-DO – send afspilningslyd for hver gang en refleksbrik passeres – bør kunne laves med en klassemetode, e.g. sound.play_sound()
 ISR(INT1_vect){
 	// Vi tæller counter op med 1
-	counter++;
+	control.increment_counter();
 	
 	// Vi dissabler de to ISR for refleksbrikkerne kortvarigt, for at være sikker på, 
 	//at der kun bliver talt op én gang per reflekspar på banen:
@@ -61,7 +54,7 @@ ISR(INT2_vect){
 	//(Kopi af ISR for INT1)
 	
 	// Vi tæller counter op med 1
-	counter++;
+	control.increment_counter();
 		
 	// Vi dissabler de to ISR for refleksbrikkerne kortvarigt, for at være sikker på,
 	//at der kun bliver talt op én gang per reflekspar på banen:
@@ -81,6 +74,8 @@ ISR(INT2_vect){
 
 int main(void)
 {
+	
+	control = DrivingControl();
 	
 	// Opsætning af ISR'er; alle sættes til at aktivere korresponderende ISR ved rising edge
 	EICRA = 0b00111111;

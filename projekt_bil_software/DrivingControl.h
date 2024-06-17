@@ -9,11 +9,13 @@
 
 class DrivingControl{
 	private:
-		int* counter_pointer_;
+		int counter;
 		int previous_speed_;
 		bool previous_direction_;
+		static const int SPEED_LEVELS[]; 
+		static const int MAX_COUNTER;
 	public:
-		DrivingControl(int* counter_pointer);
+		DrivingControl();
 
 		// Klassemetoderne tager ikke noget input; de henter blot værdien for counter fra klasse instansen
 
@@ -28,5 +30,7 @@ class DrivingControl{
 	
 		// Returværdi bruges til; Light
 		bool get_brake_state();
+		
+		void increment_counter();
 	
 };
