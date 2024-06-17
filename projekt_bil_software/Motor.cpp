@@ -5,6 +5,7 @@
  *  Author: ottosejrskildsantess
  */ 
 #include "Motor.h"
+#include <avr/io.h>
 
 
 // TO-DO – change the variable type for speed from int to uint_8
@@ -12,6 +13,8 @@
 
 // Every class object starts with having its member values set to the following initial values:
 Motor::Motor():speed_(0), forward_direction_(true) {
+	
+// SPEED //
 	// Motor PWM signalet bliver genereret af Timer 1:
 	// Bit 7 & 6: Setting when upcounting, clearing when down counting (compare match); output pin is OC1A (PB, ben 5)
 	// Bit 1 & 0: PWM, Phase correct, 10-bit (TOP = 1024)
@@ -27,26 +30,22 @@ Motor::Motor():speed_(0), forward_direction_(true) {
 	// Duty cycle = 1 - (OCRn/TOP) = 0 (1 - 1 = 0)
 	OCR1A = 1024-((1024/100)*speed_);	
 	
+// DIRECTION //
+	// Setting PINC0 to be output, to control the motor direction (pin #37, marked on the Mega Shield 2560)
+	DDRC = 0x01;
 	
-	// TO-DO: initialize the output pin that controls the H-bridge (that controls the direction)
-	
+	// Setting the bit to be 1 (forward_direction = true), meaning that the output from PC0 will be 5 V:
+	PORTC |= forward_direction_;
 }
 
-Motor::set_speed(int speed){
-	
+void Motor::set_speed(int speed){
+	OCR1A = 1024 - ((1024/100)*speed)
 }
 	
-Motor::set_forward_direction()
-
-/*
-class Motor{
-	private:
-	int speed_;
-	bool forward_direction_;
-	// Bør motoren have previous_speed_, så at den gradvist kan komme op på nuværende speed?
-	public:
-	void set_speed(int speed);
-	void set_forward_direction(bool forward_direction);
-};
-
-*/
+void Motor::set_forward_direction(bool forward_direction){
+	if(forward_direction){ // LSB is being set (the output pin)
+		PORTC |= forward_direction_;
+	} else { // This just keep all of the other bits in PORTC the same, while the LSB is being cleared (the output pin)
+		PORTC &= ~(!forward_direction_ << 0 )
+	}
+}
