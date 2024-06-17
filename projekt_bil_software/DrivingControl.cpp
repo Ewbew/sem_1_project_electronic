@@ -33,14 +33,18 @@ bool DrivingControl::get_lights_state() {
 }
 
 bool DrivingControl::get_brake_state(){
-	(*counter_pointer_)--;
-	int previous_speed = get_speed();
-	bool previous_direction = is_forward_direction();
-	(*counter_pointer_)++;
+	int current_speed = get_speed();
+	bool current_direction = is_forward_direction();
 	// Hvis nuværende fart end lavere end tidligere fart, skal der returneres true;
 	// Derudover, hvis der er skiftet retning siden sidste refleksbrik, må bilen også skulle bremse/standse
-    return get_speed() < previous_speed || is_forward_direction() != previous_direction;
+	bool should_brake = current_speed < previous_speed_ || current_direction != previous_direction_;
+
+	previous_speed_ = current_speed;
+	previous_direction_ = current_direction;
+
+	return should_brake;
 	// Man kan specificere at den bremser ud fra counter_pointer
 	// Ellers kan man have en privat variabel, der husker tidligere speed, 
 	// og ud fra den og nuværende speed afgøre, om der bliver bremset eller ej.
+
 }

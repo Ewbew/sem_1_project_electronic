@@ -10,7 +10,8 @@
 class DrivingControl{
 	private:
 		int* counter_pointer_;
-
+		int previous_speed_;
+		bool previous_direction_;
 	public:
 		DrivingControl(int* counter_pointer);
 
