@@ -10,6 +10,7 @@
 #define F_CPU 16000000
 #include <util/delay.h>
 #include "DrivingControl.h"
+#include "Motor.h"
 
 #define DEBOUNCE_DELAY_MS 150
 

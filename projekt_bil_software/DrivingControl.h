@@ -9,7 +9,7 @@
 
 class DrivingControl{
 	private:
-		int counter;
+		int counter_;
 		int previous_speed_;
 		bool previous_direction_;
 		static const int SPEED_LEVELS[]; 

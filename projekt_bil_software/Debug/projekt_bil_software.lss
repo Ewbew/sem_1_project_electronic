@@ -23,11 +23,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  000001ac  00000000  00000000  00002af8  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000825  00000000  00000000  00002ca4  2**0
+ 10 .debug_str    00000837  00000000  00000000  00002ca4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000460  00000000  00000000  000034c9  2**0
+ 11 .debug_loc    00000460  00000000  00000000  000034db  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000070  00000000  00000000  00003929  2**0
+ 12 .debug_ranges 00000070  00000000  00000000  0000393b  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -198,8 +198,8 @@ Disassembly of section .text:
  128:	6b cf       	rjmp	.-298    	; 0x0 <__vectors>
 
 0000012a <_ZN14DrivingControlC1Ev>:
-	if (counter >= 0 && counter < MAX_COUNTER) {
-		return SPEED_LEVELS[counter];
+	if (counter_ >= 0 && counter_ < MAX_COUNTER) {
+		return SPEED_LEVELS[counter_];
 		} else {
 		return -1;
 	}
@@ -212,7 +212,7 @@ Disassembly of section .text:
 00000132 <_ZN14DrivingControl17increment_counterEv>:
 
 void DrivingControl::increment_counter(){
-	counter++;
+	counter_++;
  132:	fc 01       	movw	r30, r24
  134:	20 81       	ld	r18, Z
  136:	31 81       	ldd	r19, Z+1	; 0x01
