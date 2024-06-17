@@ -11,6 +11,8 @@
 #include <util/delay.h>
 #include "DrivingControl.h"
 
+#define DEBOUNCE_DELAY_MS 150
+
 // Start variable sættes til at være false til at starte med; skiftes til true i ISR for INT0, 
 // som aktiveres ved et tryk på en eksterne knap på bilen
 volatile bool start = false;
@@ -40,7 +42,7 @@ ISR(INT1_vect){
 	// Vi dissabler de to ISR for refleksbrikkerne kortvarigt, for at være sikker på, 
 	//at der kun bliver talt op én gang per reflekspar på banen:
 	EIMSK &= 0b11111100;
-	_delay_ms(150); // OBS; denne værdi skal findes gennem tests. Prøvede værdier: 150
+	_delay_ms(DEBOUNCE_DELAY_MS); // OBS; denne værdi skal findes gennem tests. Prøvede værdier: 150
 	
 	// For at være på den sikre side, så nulstiller vi interruptsflagene for INT1 & INT2, i tilfælde af, at de var blevet sat.
 	// Man nulstiller dem ved at skrive 1 til de tilsvarende bit pladser i flag registret:
@@ -64,7 +66,7 @@ ISR(INT2_vect){
 	// Vi dissabler de to ISR for refleksbrikkerne kortvarigt, for at være sikker på,
 	//at der kun bliver talt op én gang per reflekspar på banen:
 	EIMSK &= 0b11111100;
-	_delay_ms(150); // OBS; denne værdi skal findes gennem tests. Prøvede værdier: 150
+	_delay_ms(DEBOUNCE_DELAY_MS); // OBS; denne værdi skal findes gennem tests. Prøvede værdier: 150
 		
 	// For at være på den sikre side, så nulstiller vi interruptsflagene for INT1 & INT2, i tilfælde af, at de var blevet sat.
 	// Man nulstiller dem ved at skrive 1 til de tilsvarende bit pladser i flag registret:
