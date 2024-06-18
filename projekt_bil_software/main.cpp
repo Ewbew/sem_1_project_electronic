@@ -61,6 +61,7 @@ ISR(INT2_vect){
 	//at der kun bliver talt op én gang per reflekspar på banen:
 	EIMSK &= 0b11111100;
 	_delay_ms(DEBOUNCE_DELAY_MS); // OBS; denne værdi skal findes gennem tests. Prøvede værdier: 150
+	// Til ovenstående kan det også være nødvendigt, at vi bruger en timer med en ISR, så vi ikke bremser programudførslen.
 		
 	// For at være på den sikre side, så nulstiller vi interruptsflagene for INT1 & INT2, i tilfælde af, at de var blevet sat.
 	// Man nulstiller dem ved at skrive 1 til de tilsvarende bit pladser i flag registret:

@@ -12,5 +12,7 @@ class Lights{
 		bool on_;
 		bool brake_;
 	public:
-	
+		Lights();
+		void set_lights(bool on);
+		void activate_brake_state(bool brake);
 	};
