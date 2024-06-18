@@ -12,31 +12,31 @@ const int DrivingControl::SPEED_LEVELS[] = {100, 90, 65, 50, 90, 50, 50, 50, 80,
 const int DrivingControl::MAX_COUNTER = sizeof(SPEED_LEVELS) / sizeof(SPEED_LEVELS[0]);
 
 
-DrivingControl::DrivingControl(): counter_(0) {}
+DrivingControl::DrivingControl(): counter(0) {}
 
 
 // OBS: Disse værdier skal ændres indtil at bilen kører igennem uden for mange fejl; de bestemmes gennem testkørlser.
 // OBS: Det kan være, at bilen bliver nødt til at få sat speed til 0, i stedet for bare at skifte retning.
 int DrivingControl::get_speed() {
-	if (counter_ >= 0 && counter_ < MAX_COUNTER) {
-		return SPEED_LEVELS[counter_];
+	if (counter >= 0 && counter < MAX_COUNTER) {
+		return SPEED_LEVELS[counter];
 		} else {
 		return -1;
 	}
 }
 
 void DrivingControl::increment_counter(){
-	counter_++;
+	counter++;
 }
 
 bool DrivingControl::is_forward_direction() {
-	return counter_ < 6 || counter_ >= 8;
+	return counter < 6 || counter >= 8;
 }
 
 
 // if-statements følger samme logik som get_speed()
 bool DrivingControl::get_lights_state() {
-	return counter_ < 6 || (counter_ >= 7 && counter_ < 11);
+	return counter < 6 || (counter >= 7 && counter < 11);
 }
 
 

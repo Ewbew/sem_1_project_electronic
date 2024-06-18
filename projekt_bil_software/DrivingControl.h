@@ -9,12 +9,13 @@
 
 class DrivingControl{
 	private:
-		int counter_;
 		int previous_speed_;
 		bool previous_direction_;
 		static const int SPEED_LEVELS[]; 
 		static const int MAX_COUNTER;
 	public:
+		int counter;
+
 		DrivingControl();
 
 		// Klassemetoderne tager ikke noget input; de henter blot værdien for counter fra klasse instansen

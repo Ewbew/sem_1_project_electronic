@@ -27,7 +27,7 @@ Lights lights;
 
 void handle_interrupt() {
 	control.increment_counter();
-	sound.PlaySound(1);
+	sound.PlaySound(control.counter == 11 ? 2 : 3);
 	motor.set_forward_direction(control.is_forward_direction());
 	motor.set_speed(control.get_speed());
 	lights.set_lights(control.get_lights_state());
