@@ -10,6 +10,7 @@
 #define F_CPU 16000000
 #include <util/delay.h>
 #include "DrivingControl.h"
+#include "SoundDriver.h"
 #include "Motor.h"
 
 #define DEBOUNCE_DELAY_MS 150
@@ -19,6 +20,7 @@
 volatile bool start = false;
 
 DrivingControl control;
+SoundDriver sound(15);
 
 // Interrupt rutine for start af bil:
 ISR(INT0_vect){
@@ -27,12 +29,12 @@ ISR(INT0_vect){
 }
 
 
-// TO-DO - brug en metode i driving control til at increment counter
 // TO-DO – send afspilningslyd for hver gang en refleksbrik passeres – bør kunne laves med en klassemetode, e.g. sound.play_sound()
 ISR(INT1_vect){
 	// Vi tæller counter op med 1
 	control.increment_counter();
-	
+	sound.PlaySound(1);
+
 	// Vi dissabler de to ISR for refleksbrikkerne kortvarigt, for at være sikker på, 
 	//at der kun bliver talt op én gang per reflekspar på banen:
 	EIMSK &= 0b11111100;
@@ -50,12 +52,12 @@ ISR(INT1_vect){
 }
 
 
-// TO-DO - brug en metode i driving control til at increment counter
 ISR(INT2_vect){
 	//(Kopi af ISR for INT1)
 	
 	// Vi tæller counter op med 1
 	control.increment_counter();
+	sound.PlaySound(1);
 		
 	// Vi dissabler de to ISR for refleksbrikkerne kortvarigt, for at være sikker på,
 	//at der kun bliver talt op én gang per reflekspar på banen:
@@ -76,8 +78,6 @@ ISR(INT2_vect){
 int main(void)
 {
 	
-	control = DrivingControl();
-	
 	// Opsætning af ISR'er; alle sættes til at aktivere korresponderende ISR ved rising edge
 	EICRA = 0b00111111;
 	
@@ -93,7 +93,6 @@ int main(void)
     // Her skal vi konstant køre
     while (1) 
     {
-		
 		
     }
 }
