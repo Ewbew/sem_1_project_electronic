@@ -7,8 +7,10 @@
 
 #include "DrivingControl.h"
 
-const int SPEED_LEVELS[] = {100, 90, 65, 50, 90, 50, 50, 50, 80, 80, 50, 0};
-const int MAX_COUNTER = sizeof(SPEED_LEVELS) / sizeof(SPEED_LEVELS[0]);
+
+const int DrivingControl::SPEED_LEVELS[] = {100, 90, 65, 50, 90, 50, 50, 50, 80, 80, 50, 0};
+const int DrivingControl::MAX_COUNTER = sizeof(SPEED_LEVELS) / sizeof(SPEED_LEVELS[0]);
+
 
 DrivingControl::DrivingControl(): counter_(0) {}
 
@@ -30,6 +32,7 @@ void DrivingControl::increment_counter(){
 bool DrivingControl::is_forward_direction() {
 	return counter_ < 6 || counter_ >= 8;
 }
+
 
 // if-statements følger samme logik som get_speed()
 bool DrivingControl::get_lights_state() {

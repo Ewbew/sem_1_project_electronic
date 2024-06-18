@@ -4,6 +4,8 @@
 
 DrivingControl.cpp
 
+Lights.cpp
+
 main.cpp
 
 Motor.cpp

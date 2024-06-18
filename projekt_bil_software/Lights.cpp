@@ -7,6 +7,7 @@
 
 #include "Lights.h"
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #define FRONT_INTENSITY 68
 #define BACK_INTENSITY 20
 #define BRAKE_INTENSITY 97
@@ -51,8 +52,8 @@ Lights::Lights():on_(false),brake_(false){
 
 void Lights::set_lights(bool on){
 	if(on){
-		OCR3A = 1024*(FRONT_INTENSITY/100)
-		OCR3B = 1024*(BACK_INTENSITY/100)
+		OCR3A = 1024*(FRONT_INTENSITY/100);
+		OCR3B = 1024*(BACK_INTENSITY/100);
 	} else{
 		OCR3A = 0;
 		OCR3B = 0;
@@ -60,8 +61,7 @@ void Lights::set_lights(bool on){
 }
 
 
-void Lights::activate_brake_state(bool brake){
-	if(brake){
+void Lights::activate_brake_state(){
 		// Vi initierer en timer, der sørger for at bremselyset er tændt i 0.5 sekunder, uden at bremse resten af programmet
 		// Vi bruger timer 4 til dette:
 		
@@ -80,7 +80,5 @@ void Lights::activate_brake_state(bool brake){
 		// Setting the back light intensity to brake state:
 		OCR3B = 1024*(BRAKE_INTENSITY/100);
 		
-		// The intensity will be set back to normal in the ISR for timer 4 overflow
-		
-	}		
+		// The intensity will be set back to normal in the ISR for timer 4 overflow		
 }

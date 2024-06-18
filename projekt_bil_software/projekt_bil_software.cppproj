@@ -161,6 +161,9 @@
     <Compile Include="DrivingControl.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Lights.cpp">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Lights.h">
       <SubType>compile</SubType>
     </Compile>

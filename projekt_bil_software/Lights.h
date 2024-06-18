@@ -14,5 +14,5 @@ class Lights{
 	public:
 		Lights();
 		void set_lights(bool on);
-		void activate_brake_state(bool brake);
+		void activate_brake_state();
 	};

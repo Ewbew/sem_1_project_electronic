@@ -12,6 +12,7 @@
 #include "DrivingControl.h"
 #include "SoundDriver.h"
 #include "Motor.h"
+#include "Lights.h"
 
 #define DEBOUNCE_DELAY_MS 150
 
@@ -21,11 +22,16 @@ volatile bool start = false;
 
 DrivingControl control;
 SoundDriver sound(15);
+Motor motor;
+Lights lights;
 
 void handle_interrupt() {
 	control.increment_counter();
 	sound.PlaySound(1);
-
+	motor.set_forward_direction(control.is_forward_direction());
+	motor.set_speed(control.get_speed());
+	lights.set_lights(control.get_lights_state());
+	if(control.get_brake_state()) lights.activate_brake_state();
 	// Vi dissabler de to ISR for refleksbrikkerne kortvarigt, for at være sikker på,
 	//at der kun bliver talt op én gang per reflekspar på banen:
 	EIMSK &= 0b11111100;
@@ -45,6 +51,9 @@ void handle_interrupt() {
 // Interrupt rutine for start af bil:
 ISR(INT0_vect){
 	start = true;
+	sound.PlaySound(1);
+	lights.set_lights(control.get_lights_state());
+	motor.set_speed(control.get_speed());
 	reti();
 }
 
@@ -62,7 +71,6 @@ ISR(INT2_vect){
 
 int main(void)
 {
-	
 	// Opsætning af ISR'er; alle sættes til at aktivere korresponderende ISR ved rising edge
 	EICRA = 0b00111111;
 	

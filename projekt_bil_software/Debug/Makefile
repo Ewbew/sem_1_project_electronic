@@ -38,6 +38,7 @@ SUBDIRS :=
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../DrivingControl.cpp \
+../Lights.cpp \
 ../main.cpp \
 ../Motor.cpp \
 ../SoundDriver.cpp \
@@ -52,6 +53,7 @@ ASM_SRCS +=
 
 OBJS +=  \
 DrivingControl.o \
+Lights.o \
 main.o \
 Motor.o \
 SoundDriver.o \
@@ -59,6 +61,7 @@ uart.o
 
 OBJS_AS_ARGS +=  \
 DrivingControl.o \
+Lights.o \
 main.o \
 Motor.o \
 SoundDriver.o \
@@ -66,6 +69,7 @@ uart.o
 
 C_DEPS +=  \
 DrivingControl.d \
+Lights.d \
 main.d \
 Motor.d \
 SoundDriver.d \
@@ -73,6 +77,7 @@ uart.d
 
 C_DEPS_AS_ARGS +=  \
 DrivingControl.d \
+Lights.d \
 main.d \
 Motor.d \
 SoundDriver.d \
@@ -93,6 +98,13 @@ LINKER_SCRIPT_DEP+=
 
 # AVR32/GNU C Compiler
 ./DrivingControl.o: .././DrivingControl.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./Lights.o: .././Lights.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
