@@ -34,17 +34,17 @@ void handle_interrupt() {
 	if(control.get_brake_state()) lights.activate_brake_state();
 	// Vi dissabler de to ISR for refleksbrikkerne kortvarigt, for at være sikker på,
 	//at der kun bliver talt op én gang per reflekspar på banen:
-	EIMSK &= 0b11111100;
+	EIMSK &= 0b11111001;
 	_delay_ms(DEBOUNCE_DELAY_MS); // OBS; denne værdi skal findes gennem tests. Prøvede værdier: 150
 	
 	// For at være på den sikre side, så nulstiller vi interruptsflagene for INT1 & INT2, i tilfælde af, at de var blevet sat.
 	// Man nulstiller dem ved at skrive 1 til de tilsvarende bit pladser i flag registret:
 	if(EIFR != 0){
-		EIFR |= 0b00000011;
+		EIFR |= 0b00000110;
 	}
 	
 	// Vi enabler de to interrupts for INT1 og INT2 igen
-	EIMSK |= 0b00000011;
+	EIMSK |= 0b00000110;
 }
 
 
