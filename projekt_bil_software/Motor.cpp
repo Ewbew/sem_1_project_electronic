@@ -16,9 +16,9 @@ Motor::Motor():speed_(0), forward_direction_(true) {
 	
 // SPEED //
 	// Motor PWM signalet bliver genereret af Timer 1:
-	// Bit 7 & 6: Clearing when upcounting, setting when down counting (compare match, 10); output pin is OC1A (PB, ben 5)
+	// Bit 7 & 6: Setting when upcounting, clearing when down counting (compare match); output pin is OC1A (PB, ben 5)
 	// Bit 1 & 0: PWM, Phase correct, 10-bit (TOP = 1024)
-	TCCR1A = 0b10000011;
+	TCCR1A = 0b11000011;
 	// Bit 2, 1 & 0: Prescaler = 8
 	TCCR1B = 0b00000010;
 	// With the above settings, the frequency will be ~977.5 Hz
@@ -26,7 +26,9 @@ Motor::Motor():speed_(0), forward_direction_(true) {
 	// Otherwise, we will have to test out which frequency works the best
 	
 	
-	OCR1A = 1024*(speed_/100);	
+	// When setting OCR1A to be equal TOP (2^10), then duty cycle is:
+	// Duty cycle = 1 - (OCRn/TOP) = 0 (1 - 1 = 0)
+	OCR1A = 1024-((1024/100)*speed_);	
 	
 // DIRECTION //
 	// Setting PINC0 to be output, to control the motor direction (pin #37, marked on the Mega Shield 2560)
@@ -37,16 +39,14 @@ Motor::Motor():speed_(0), forward_direction_(true) {
 }
 
 void Motor::set_speed(int speed){
-	// When setting OCR1A to be equal TOP (2^10 = 1024), then duty cycle is:
-	// Duty cycle = (OCRn/TOP)
-	OCR1A = 1024*(speed_/100);
-	
+	speed_ = speed;
+	OCR1A = 1024 - ((1024/100)*speed);
 }
 	
 void Motor::set_forward_direction(bool forward_direction){
 	if(forward_direction){ // LSB is being set (the output pin)
-		PORTC |= forward_direction_;
+		PORTC |= 0b00000001;
 	} else { // This just keep all of the other bits in PORTC the same, while the LSB is being cleared (the output pin)
-		PORTC &= ~(!forward_direction_ << 0 )
+		PORTC &= 0b11111110;
 	}
 }

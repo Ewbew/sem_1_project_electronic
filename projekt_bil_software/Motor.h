@@ -8,6 +8,7 @@
 // Nice-to-haves:
 // - Do gradual acceleration, and not jsut instantly set the speed to current speed (e.g. going directly from 50 to 100)
 
+#pragma once
 class Motor{
 	private:
 		int speed_;

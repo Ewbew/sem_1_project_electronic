@@ -3,31 +3,31 @@ projekt_bil_software.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800200  00800200  00000342  2**0
+  0 .data         00000000  00800200  00800200  00000494  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000002ce  00000000  00000000  00000074  2**1
+  1 .text         00000420  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000006  00800200  00800200  00000342  2**0
+  2 .bss          00000007  00800200  00800200  00000494  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000342  2**0
+  3 .comment      00000030  00000000  00000000  00000494  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000374  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000004c4  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000090  00000000  00000000  000003b4  2**0
+  5 .debug_aranges 00000108  00000000  00000000  00000504  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000128b  00000000  00000000  00000444  2**0
+  6 .debug_info   00001999  00000000  00000000  0000060c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000ec2  00000000  00000000  000016cf  2**0
+  7 .debug_abbrev 000011a3  00000000  00000000  00001fa5  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000564  00000000  00000000  00002591  2**0
+  8 .debug_line   00000817  00000000  00000000  00003148  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000001ac  00000000  00000000  00002af8  2**2
+  9 .debug_frame  000002a4  00000000  00000000  00003960  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000837  00000000  00000000  00002ca4  2**0
+ 10 .debug_str    000009f2  00000000  00000000  00003c04  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000460  00000000  00000000  000034db  2**0
+ 11 .debug_loc    000007d0  00000000  00000000  000045f6  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000070  00000000  00000000  0000393b  2**0
+ 12 .debug_ranges 000000c8  00000000  00000000  00004dc6  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -35,11 +35,11 @@ Disassembly of section .text:
 00000000 <__vectors>:
    0:	72 c0       	rjmp	.+228    	; 0xe6 <__ctors_end>
    2:	00 00       	nop
-   4:	a7 c0       	rjmp	.+334    	; 0x154 <__vector_1>
+   4:	ab c0       	rjmp	.+342    	; 0x15c <__vector_1>
    6:	00 00       	nop
-   8:	b5 c0       	rjmp	.+362    	; 0x174 <__vector_2>
+   8:	b9 c0       	rjmp	.+370    	; 0x17c <__vector_2>
    a:	00 00       	nop
-   c:	f2 c0       	rjmp	.+484    	; 0x1f2 <__vector_3>
+   c:	fa c0       	rjmp	.+500    	; 0x202 <__vector_3>
    e:	00 00       	nop
   10:	8b c0       	rjmp	.+278    	; 0x128 <__bad_interrupt>
   12:	00 00       	nop
@@ -149,7 +149,7 @@ Disassembly of section .text:
 	...
 
 000000e4 <__ctors_start>:
-  e4:	57 01       	movw	r10, r14
+  e4:	50 01       	movw	r10, r0
 
 000000e6 <__ctors_end>:
   e6:	11 24       	eor	r1, r1
@@ -171,7 +171,7 @@ Disassembly of section .text:
   fe:	1d 92       	st	X+, r1
 
 00000100 <.do_clear_bss_start>:
- 100:	a6 30       	cpi	r26, 0x06	; 6
+ 100:	a7 30       	cpi	r26, 0x07	; 7
  102:	b2 07       	cpc	r27, r18
  104:	e1 f7       	brne	.-8      	; 0xfe <.do_clear_bss_loop>
 
@@ -185,14 +185,14 @@ Disassembly of section .text:
  112:	01 09       	sbc	r16, r1
  114:	80 2f       	mov	r24, r16
  116:	fe 01       	movw	r30, r28
- 118:	d0 d0       	rcall	.+416    	; 0x2ba <__tablejump2__>
+ 118:	79 d1       	rcall	.+754    	; 0x40c <__tablejump2__>
  11a:	c2 37       	cpi	r28, 0x72	; 114
  11c:	d1 07       	cpc	r29, r17
  11e:	80 e0       	ldi	r24, 0x00	; 0
  120:	08 07       	cpc	r16, r24
  122:	b1 f7       	brne	.-20     	; 0x110 <__do_global_ctors+0xa>
- 124:	a5 d0       	rcall	.+330    	; 0x270 <main>
- 126:	d1 c0       	rjmp	.+418    	; 0x2ca <_exit>
+ 124:	b1 d0       	rcall	.+354    	; 0x288 <main>
+ 126:	7a c1       	rjmp	.+756    	; 0x41c <_exit>
 
 00000128 <__bad_interrupt>:
  128:	6b cf       	rjmp	.-298    	; 0x0 <__vectors>
@@ -223,307 +223,538 @@ void DrivingControl::increment_counter(){
  140:	08 95       	ret
 
 00000142 <_Z41__static_initialization_and_destruction_0ii>:
+    // Her skal vi konstant køre
     while (1) 
     {
-		
 		
     }
 }
  142:	01 97       	sbiw	r24, 0x01	; 1
- 144:	31 f4       	brne	.+12     	; 0x152 <_Z41__static_initialization_and_destruction_0ii+0x10>
+ 144:	51 f4       	brne	.+20     	; 0x15a <_Z41__static_initialization_and_destruction_0ii+0x18>
  146:	6f 3f       	cpi	r22, 0xFF	; 255
  148:	7f 4f       	sbci	r23, 0xFF	; 255
- 14a:	19 f4       	brne	.+6      	; 0x152 <_Z41__static_initialization_and_destruction_0ii+0x10>
+ 14a:	39 f4       	brne	.+14     	; 0x15a <_Z41__static_initialization_and_destruction_0ii+0x18>
 
 // Start variable sættes til at være false til at starte med; skiftes til true i ISR for INT0, 
 // som aktiveres ved et tryk på en eksterne knap på bilen
 volatile bool start = false;
 
 DrivingControl control;
- 14c:	80 e0       	ldi	r24, 0x00	; 0
+ 14c:	81 e0       	ldi	r24, 0x01	; 1
  14e:	92 e0       	ldi	r25, 0x02	; 2
- 150:	ec cf       	rjmp	.-40     	; 0x12a <_ZN14DrivingControlC1Ev>
- 152:	08 95       	ret
+ 150:	ec df       	rcall	.-40     	; 0x12a <_ZN14DrivingControlC1Ev>
+SoundDriver sound(15);
+ 152:	6f e0       	ldi	r22, 0x0F	; 15
+ 154:	80 e0       	ldi	r24, 0x00	; 0
+ 156:	92 e0       	ldi	r25, 0x02	; 2
+ 158:	e1 c0       	rjmp	.+450    	; 0x31c <_ZN11SoundDriverC1Eh>
+ 15a:	08 95       	ret
 
-00000154 <__vector_1>:
+0000015c <__vector_1>:
 
 // Interrupt rutine for start af bil:
 ISR(INT0_vect){
- 154:	1f 92       	push	r1
- 156:	0f 92       	push	r0
- 158:	0f b6       	in	r0, 0x3f	; 63
- 15a:	0f 92       	push	r0
- 15c:	11 24       	eor	r1, r1
- 15e:	8f 93       	push	r24
+ 15c:	1f 92       	push	r1
+ 15e:	0f 92       	push	r0
+ 160:	0f b6       	in	r0, 0x3f	; 63
+ 162:	0f 92       	push	r0
+ 164:	11 24       	eor	r1, r1
+ 166:	8f 93       	push	r24
 	start = true;
- 160:	81 e0       	ldi	r24, 0x01	; 1
- 162:	80 93 05 02 	sts	0x0205, r24	; 0x800205 <start>
+ 168:	81 e0       	ldi	r24, 0x01	; 1
+ 16a:	80 93 06 02 	sts	0x0206, r24	; 0x800206 <start>
 	reti();
- 166:	18 95       	reti
+ 16e:	18 95       	reti
 }
- 168:	8f 91       	pop	r24
- 16a:	0f 90       	pop	r0
- 16c:	0f be       	out	0x3f, r0	; 63
- 16e:	0f 90       	pop	r0
- 170:	1f 90       	pop	r1
- 172:	18 95       	reti
+ 170:	8f 91       	pop	r24
+ 172:	0f 90       	pop	r0
+ 174:	0f be       	out	0x3f, r0	; 63
+ 176:	0f 90       	pop	r0
+ 178:	1f 90       	pop	r1
+ 17a:	18 95       	reti
 
-00000174 <__vector_2>:
+0000017c <__vector_2>:
 
 
-// TO-DO - brug en metode i driving control til at increment counter
 // TO-DO – send afspilningslyd for hver gang en refleksbrik passeres – bør kunne laves med en klassemetode, e.g. sound.play_sound()
 ISR(INT1_vect){
- 174:	1f 92       	push	r1
- 176:	0f 92       	push	r0
- 178:	0f b6       	in	r0, 0x3f	; 63
- 17a:	0f 92       	push	r0
- 17c:	11 24       	eor	r1, r1
- 17e:	0b b6       	in	r0, 0x3b	; 59
- 180:	0f 92       	push	r0
- 182:	2f 93       	push	r18
- 184:	3f 93       	push	r19
- 186:	4f 93       	push	r20
- 188:	5f 93       	push	r21
- 18a:	6f 93       	push	r22
- 18c:	7f 93       	push	r23
- 18e:	8f 93       	push	r24
- 190:	9f 93       	push	r25
- 192:	af 93       	push	r26
- 194:	bf 93       	push	r27
- 196:	ef 93       	push	r30
- 198:	ff 93       	push	r31
+ 17c:	1f 92       	push	r1
+ 17e:	0f 92       	push	r0
+ 180:	0f b6       	in	r0, 0x3f	; 63
+ 182:	0f 92       	push	r0
+ 184:	11 24       	eor	r1, r1
+ 186:	0b b6       	in	r0, 0x3b	; 59
+ 188:	0f 92       	push	r0
+ 18a:	2f 93       	push	r18
+ 18c:	3f 93       	push	r19
+ 18e:	4f 93       	push	r20
+ 190:	5f 93       	push	r21
+ 192:	6f 93       	push	r22
+ 194:	7f 93       	push	r23
+ 196:	8f 93       	push	r24
+ 198:	9f 93       	push	r25
+ 19a:	af 93       	push	r26
+ 19c:	bf 93       	push	r27
+ 19e:	ef 93       	push	r30
+ 1a0:	ff 93       	push	r31
 	// Vi tæller counter op med 1
 	control.increment_counter();
- 19a:	80 e0       	ldi	r24, 0x00	; 0
- 19c:	92 e0       	ldi	r25, 0x02	; 2
- 19e:	c9 df       	rcall	.-110    	; 0x132 <_ZN14DrivingControl17increment_counterEv>
-	
+ 1a2:	81 e0       	ldi	r24, 0x01	; 1
+ 1a4:	92 e0       	ldi	r25, 0x02	; 2
+ 1a6:	c5 df       	rcall	.-118    	; 0x132 <_ZN14DrivingControl17increment_counterEv>
+	sound.PlaySound(1);
+ 1a8:	61 e0       	ldi	r22, 0x01	; 1
+ 1aa:	80 e0       	ldi	r24, 0x00	; 0
+ 1ac:	92 e0       	ldi	r25, 0x02	; 2
+ 1ae:	7e d0       	rcall	.+252    	; 0x2ac <_ZN11SoundDriver9PlaySoundEh>
+
 	// Vi dissabler de to ISR for refleksbrikkerne kortvarigt, for at være sikker på, 
 	//at der kun bliver talt op én gang per reflekspar på banen:
 	EIMSK &= 0b11111100;
- 1a0:	8d b3       	in	r24, 0x1d	; 29
- 1a2:	8c 7f       	andi	r24, 0xFC	; 252
- 1a4:	8d bb       	out	0x1d, r24	; 29
+ 1b0:	8d b3       	in	r24, 0x1d	; 29
+ 1b2:	8c 7f       	andi	r24, 0xFC	; 252
+ 1b4:	8d bb       	out	0x1d, r24	; 29
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 1a6:	2f ef       	ldi	r18, 0xFF	; 255
- 1a8:	82 e5       	ldi	r24, 0x52	; 82
- 1aa:	97 e0       	ldi	r25, 0x07	; 7
- 1ac:	21 50       	subi	r18, 0x01	; 1
- 1ae:	80 40       	sbci	r24, 0x00	; 0
- 1b0:	90 40       	sbci	r25, 0x00	; 0
- 1b2:	e1 f7       	brne	.-8      	; 0x1ac <__vector_2+0x38>
- 1b4:	00 c0       	rjmp	.+0      	; 0x1b6 <__vector_2+0x42>
- 1b6:	00 00       	nop
+ 1b6:	2f ef       	ldi	r18, 0xFF	; 255
+ 1b8:	82 e5       	ldi	r24, 0x52	; 82
+ 1ba:	97 e0       	ldi	r25, 0x07	; 7
+ 1bc:	21 50       	subi	r18, 0x01	; 1
+ 1be:	80 40       	sbci	r24, 0x00	; 0
+ 1c0:	90 40       	sbci	r25, 0x00	; 0
+ 1c2:	e1 f7       	brne	.-8      	; 0x1bc <__vector_2+0x40>
+ 1c4:	00 c0       	rjmp	.+0      	; 0x1c6 <__vector_2+0x4a>
+ 1c6:	00 00       	nop
 	_delay_ms(DEBOUNCE_DELAY_MS); // OBS; denne værdi skal findes gennem tests. Prøvede værdier: 150
 	
 	// For at være på den sikre side, så nulstiller vi interruptsflagene for INT1 & INT2, i tilfælde af, at de var blevet sat.
 	// Man nulstiller dem ved at skrive 1 til de tilsvarende bit pladser i flag registret:
 	if(EIFR!=0){
- 1b8:	8c b3       	in	r24, 0x1c	; 28
- 1ba:	88 23       	and	r24, r24
- 1bc:	19 f0       	breq	.+6      	; 0x1c4 <__vector_2+0x50>
+ 1c8:	8c b3       	in	r24, 0x1c	; 28
+ 1ca:	88 23       	and	r24, r24
+ 1cc:	19 f0       	breq	.+6      	; 0x1d4 <__vector_2+0x58>
 		EIFR |= 0b00000011;
- 1be:	8c b3       	in	r24, 0x1c	; 28
- 1c0:	83 60       	ori	r24, 0x03	; 3
- 1c2:	8c bb       	out	0x1c, r24	; 28
+ 1ce:	8c b3       	in	r24, 0x1c	; 28
+ 1d0:	83 60       	ori	r24, 0x03	; 3
+ 1d2:	8c bb       	out	0x1c, r24	; 28
 	}
 	
 	// Vi enabler de to interrupts for INT1 og INT2 igen
 	EIMSK |= 0b00000011;	
- 1c4:	8d b3       	in	r24, 0x1d	; 29
- 1c6:	83 60       	ori	r24, 0x03	; 3
- 1c8:	8d bb       	out	0x1d, r24	; 29
+ 1d4:	8d b3       	in	r24, 0x1d	; 29
+ 1d6:	83 60       	ori	r24, 0x03	; 3
+ 1d8:	8d bb       	out	0x1d, r24	; 29
 	reti();
- 1ca:	18 95       	reti
+ 1da:	18 95       	reti
 }
- 1cc:	ff 91       	pop	r31
- 1ce:	ef 91       	pop	r30
- 1d0:	bf 91       	pop	r27
- 1d2:	af 91       	pop	r26
- 1d4:	9f 91       	pop	r25
- 1d6:	8f 91       	pop	r24
- 1d8:	7f 91       	pop	r23
- 1da:	6f 91       	pop	r22
- 1dc:	5f 91       	pop	r21
- 1de:	4f 91       	pop	r20
- 1e0:	3f 91       	pop	r19
- 1e2:	2f 91       	pop	r18
- 1e4:	0f 90       	pop	r0
- 1e6:	0b be       	out	0x3b, r0	; 59
- 1e8:	0f 90       	pop	r0
- 1ea:	0f be       	out	0x3f, r0	; 63
- 1ec:	0f 90       	pop	r0
- 1ee:	1f 90       	pop	r1
- 1f0:	18 95       	reti
+ 1dc:	ff 91       	pop	r31
+ 1de:	ef 91       	pop	r30
+ 1e0:	bf 91       	pop	r27
+ 1e2:	af 91       	pop	r26
+ 1e4:	9f 91       	pop	r25
+ 1e6:	8f 91       	pop	r24
+ 1e8:	7f 91       	pop	r23
+ 1ea:	6f 91       	pop	r22
+ 1ec:	5f 91       	pop	r21
+ 1ee:	4f 91       	pop	r20
+ 1f0:	3f 91       	pop	r19
+ 1f2:	2f 91       	pop	r18
+ 1f4:	0f 90       	pop	r0
+ 1f6:	0b be       	out	0x3b, r0	; 59
+ 1f8:	0f 90       	pop	r0
+ 1fa:	0f be       	out	0x3f, r0	; 63
+ 1fc:	0f 90       	pop	r0
+ 1fe:	1f 90       	pop	r1
+ 200:	18 95       	reti
 
-000001f2 <__vector_3>:
+00000202 <__vector_3>:
 
 
-// TO-DO - brug en metode i driving control til at increment counter
 ISR(INT2_vect){
- 1f2:	1f 92       	push	r1
- 1f4:	0f 92       	push	r0
- 1f6:	0f b6       	in	r0, 0x3f	; 63
- 1f8:	0f 92       	push	r0
- 1fa:	11 24       	eor	r1, r1
- 1fc:	0b b6       	in	r0, 0x3b	; 59
- 1fe:	0f 92       	push	r0
- 200:	2f 93       	push	r18
- 202:	3f 93       	push	r19
- 204:	4f 93       	push	r20
- 206:	5f 93       	push	r21
- 208:	6f 93       	push	r22
- 20a:	7f 93       	push	r23
- 20c:	8f 93       	push	r24
- 20e:	9f 93       	push	r25
- 210:	af 93       	push	r26
- 212:	bf 93       	push	r27
- 214:	ef 93       	push	r30
- 216:	ff 93       	push	r31
+ 202:	1f 92       	push	r1
+ 204:	0f 92       	push	r0
+ 206:	0f b6       	in	r0, 0x3f	; 63
+ 208:	0f 92       	push	r0
+ 20a:	11 24       	eor	r1, r1
+ 20c:	0b b6       	in	r0, 0x3b	; 59
+ 20e:	0f 92       	push	r0
+ 210:	2f 93       	push	r18
+ 212:	3f 93       	push	r19
+ 214:	4f 93       	push	r20
+ 216:	5f 93       	push	r21
+ 218:	6f 93       	push	r22
+ 21a:	7f 93       	push	r23
+ 21c:	8f 93       	push	r24
+ 21e:	9f 93       	push	r25
+ 220:	af 93       	push	r26
+ 222:	bf 93       	push	r27
+ 224:	ef 93       	push	r30
+ 226:	ff 93       	push	r31
 	//(Kopi af ISR for INT1)
 	
 	// Vi tæller counter op med 1
 	control.increment_counter();
- 218:	80 e0       	ldi	r24, 0x00	; 0
- 21a:	92 e0       	ldi	r25, 0x02	; 2
- 21c:	8a df       	rcall	.-236    	; 0x132 <_ZN14DrivingControl17increment_counterEv>
+ 228:	81 e0       	ldi	r24, 0x01	; 1
+ 22a:	92 e0       	ldi	r25, 0x02	; 2
+ 22c:	82 df       	rcall	.-252    	; 0x132 <_ZN14DrivingControl17increment_counterEv>
+	sound.PlaySound(1);
+ 22e:	61 e0       	ldi	r22, 0x01	; 1
+ 230:	80 e0       	ldi	r24, 0x00	; 0
+ 232:	92 e0       	ldi	r25, 0x02	; 2
+ 234:	3b d0       	rcall	.+118    	; 0x2ac <_ZN11SoundDriver9PlaySoundEh>
 		
 	// Vi dissabler de to ISR for refleksbrikkerne kortvarigt, for at være sikker på,
 	//at der kun bliver talt op én gang per reflekspar på banen:
 	EIMSK &= 0b11111100;
- 21e:	8d b3       	in	r24, 0x1d	; 29
- 220:	8c 7f       	andi	r24, 0xFC	; 252
- 222:	8d bb       	out	0x1d, r24	; 29
- 224:	2f ef       	ldi	r18, 0xFF	; 255
- 226:	82 e5       	ldi	r24, 0x52	; 82
- 228:	97 e0       	ldi	r25, 0x07	; 7
- 22a:	21 50       	subi	r18, 0x01	; 1
- 22c:	80 40       	sbci	r24, 0x00	; 0
- 22e:	90 40       	sbci	r25, 0x00	; 0
- 230:	e1 f7       	brne	.-8      	; 0x22a <__vector_3+0x38>
- 232:	00 c0       	rjmp	.+0      	; 0x234 <__vector_3+0x42>
- 234:	00 00       	nop
+ 236:	8d b3       	in	r24, 0x1d	; 29
+ 238:	8c 7f       	andi	r24, 0xFC	; 252
+ 23a:	8d bb       	out	0x1d, r24	; 29
+ 23c:	2f ef       	ldi	r18, 0xFF	; 255
+ 23e:	82 e5       	ldi	r24, 0x52	; 82
+ 240:	97 e0       	ldi	r25, 0x07	; 7
+ 242:	21 50       	subi	r18, 0x01	; 1
+ 244:	80 40       	sbci	r24, 0x00	; 0
+ 246:	90 40       	sbci	r25, 0x00	; 0
+ 248:	e1 f7       	brne	.-8      	; 0x242 <__vector_3+0x40>
+ 24a:	00 c0       	rjmp	.+0      	; 0x24c <__vector_3+0x4a>
+ 24c:	00 00       	nop
 	_delay_ms(DEBOUNCE_DELAY_MS); // OBS; denne værdi skal findes gennem tests. Prøvede værdier: 150
 		
 	// For at være på den sikre side, så nulstiller vi interruptsflagene for INT1 & INT2, i tilfælde af, at de var blevet sat.
 	// Man nulstiller dem ved at skrive 1 til de tilsvarende bit pladser i flag registret:
 	if(EIFR!=0){
- 236:	8c b3       	in	r24, 0x1c	; 28
- 238:	88 23       	and	r24, r24
- 23a:	19 f0       	breq	.+6      	; 0x242 <__vector_3+0x50>
+ 24e:	8c b3       	in	r24, 0x1c	; 28
+ 250:	88 23       	and	r24, r24
+ 252:	19 f0       	breq	.+6      	; 0x25a <__vector_3+0x58>
 		EIFR |= 0b00000011;
- 23c:	8c b3       	in	r24, 0x1c	; 28
- 23e:	83 60       	ori	r24, 0x03	; 3
- 240:	8c bb       	out	0x1c, r24	; 28
+ 254:	8c b3       	in	r24, 0x1c	; 28
+ 256:	83 60       	ori	r24, 0x03	; 3
+ 258:	8c bb       	out	0x1c, r24	; 28
 	}
 		
 	// Vi enabler de to interrupts for INT1 og INT2 igen
 	EIMSK |= 0b00000011;
- 242:	8d b3       	in	r24, 0x1d	; 29
- 244:	83 60       	ori	r24, 0x03	; 3
- 246:	8d bb       	out	0x1d, r24	; 29
+ 25a:	8d b3       	in	r24, 0x1d	; 29
+ 25c:	83 60       	ori	r24, 0x03	; 3
+ 25e:	8d bb       	out	0x1d, r24	; 29
 	reti();
- 248:	18 95       	reti
+ 260:	18 95       	reti
 }
- 24a:	ff 91       	pop	r31
- 24c:	ef 91       	pop	r30
- 24e:	bf 91       	pop	r27
- 250:	af 91       	pop	r26
- 252:	9f 91       	pop	r25
- 254:	8f 91       	pop	r24
- 256:	7f 91       	pop	r23
- 258:	6f 91       	pop	r22
- 25a:	5f 91       	pop	r21
- 25c:	4f 91       	pop	r20
- 25e:	3f 91       	pop	r19
- 260:	2f 91       	pop	r18
- 262:	0f 90       	pop	r0
- 264:	0b be       	out	0x3b, r0	; 59
- 266:	0f 90       	pop	r0
- 268:	0f be       	out	0x3f, r0	; 63
- 26a:	0f 90       	pop	r0
- 26c:	1f 90       	pop	r1
- 26e:	18 95       	reti
+ 262:	ff 91       	pop	r31
+ 264:	ef 91       	pop	r30
+ 266:	bf 91       	pop	r27
+ 268:	af 91       	pop	r26
+ 26a:	9f 91       	pop	r25
+ 26c:	8f 91       	pop	r24
+ 26e:	7f 91       	pop	r23
+ 270:	6f 91       	pop	r22
+ 272:	5f 91       	pop	r21
+ 274:	4f 91       	pop	r20
+ 276:	3f 91       	pop	r19
+ 278:	2f 91       	pop	r18
+ 27a:	0f 90       	pop	r0
+ 27c:	0b be       	out	0x3b, r0	; 59
+ 27e:	0f 90       	pop	r0
+ 280:	0f be       	out	0x3f, r0	; 63
+ 282:	0f 90       	pop	r0
+ 284:	1f 90       	pop	r1
+ 286:	18 95       	reti
 
-00000270 <main>:
+00000288 <main>:
 
 int main(void)
 {
- 270:	cf 93       	push	r28
- 272:	df 93       	push	r29
- 274:	00 d0       	rcall	.+0      	; 0x276 <main+0x6>
- 276:	1f 92       	push	r1
- 278:	1f 92       	push	r1
- 27a:	cd b7       	in	r28, 0x3d	; 61
- 27c:	de b7       	in	r29, 0x3e	; 62
-	
-	control = DrivingControl();
- 27e:	ce 01       	movw	r24, r28
- 280:	01 96       	adiw	r24, 0x01	; 1
- 282:	53 df       	rcall	.-346    	; 0x12a <_ZN14DrivingControlC1Ev>
- 284:	85 e0       	ldi	r24, 0x05	; 5
- 286:	fe 01       	movw	r30, r28
- 288:	31 96       	adiw	r30, 0x01	; 1
- 28a:	a0 e0       	ldi	r26, 0x00	; 0
- 28c:	b2 e0       	ldi	r27, 0x02	; 2
- 28e:	01 90       	ld	r0, Z+
- 290:	0d 92       	st	X+, r0
- 292:	8a 95       	dec	r24
- 294:	e1 f7       	brne	.-8      	; 0x28e <main+0x1e>
 	
 	// Opsætning af ISR'er; alle sættes til at aktivere korresponderende ISR ved rising edge
 	EICRA = 0b00111111;
- 296:	8f e3       	ldi	r24, 0x3F	; 63
- 298:	80 93 69 00 	sts	0x0069, r24	; 0x800069 <__TEXT_REGION_LENGTH__+0x7c0069>
+ 288:	8f e3       	ldi	r24, 0x3F	; 63
+ 28a:	80 93 69 00 	sts	0x0069, r24	; 0x800069 <__TEXT_REGION_LENGTH__+0x7c0069>
 	
 	// Vi enabler de tre interrupts
 	EIMSK |= 0b00000111;
- 29c:	8d b3       	in	r24, 0x1d	; 29
- 29e:	87 60       	ori	r24, 0x07	; 7
- 2a0:	8d bb       	out	0x1d, r24	; 29
+ 28e:	8d b3       	in	r24, 0x1d	; 29
+ 290:	87 60       	ori	r24, 0x07	; 7
+ 292:	8d bb       	out	0x1d, r24	; 29
 	
 	// Enable global interrupt flag:
 	sei();
- 2a2:	78 94       	sei
+ 294:	78 94       	sei
 
 	while (!start);
- 2a4:	80 91 05 02 	lds	r24, 0x0205	; 0x800205 <start>
- 2a8:	88 23       	and	r24, r24
- 2aa:	e1 f3       	breq	.-8      	; 0x2a4 <main+0x34>
- 2ac:	ff cf       	rjmp	.-2      	; 0x2ac <main+0x3c>
+ 296:	80 91 06 02 	lds	r24, 0x0206	; 0x800206 <start>
+ 29a:	88 23       	and	r24, r24
+ 29c:	e1 f3       	breq	.-8      	; 0x296 <main+0xe>
+ 29e:	ff cf       	rjmp	.-2      	; 0x29e <main+0x16>
 
-000002ae <_GLOBAL__sub_I_start>:
+000002a0 <_GLOBAL__sub_I_start>:
+    // Her skal vi konstant køre
     while (1) 
     {
 		
-		
     }
 }
- 2ae:	6f ef       	ldi	r22, 0xFF	; 255
- 2b0:	7f ef       	ldi	r23, 0xFF	; 255
- 2b2:	81 e0       	ldi	r24, 0x01	; 1
- 2b4:	90 e0       	ldi	r25, 0x00	; 0
- 2b6:	45 cf       	rjmp	.-374    	; 0x142 <_Z41__static_initialization_and_destruction_0ii>
- 2b8:	08 95       	ret
+ 2a0:	6f ef       	ldi	r22, 0xFF	; 255
+ 2a2:	7f ef       	ldi	r23, 0xFF	; 255
+ 2a4:	81 e0       	ldi	r24, 0x01	; 1
+ 2a6:	90 e0       	ldi	r25, 0x00	; 0
+ 2a8:	4c cf       	rjmp	.-360    	; 0x142 <_Z41__static_initialization_and_destruction_0ii>
+ 2aa:	08 95       	ret
 
-000002ba <__tablejump2__>:
- 2ba:	ee 0f       	add	r30, r30
- 2bc:	ff 1f       	adc	r31, r31
- 2be:	88 1f       	adc	r24, r24
- 2c0:	8b bf       	out	0x3b, r24	; 59
- 2c2:	07 90       	elpm	r0, Z+
- 2c4:	f6 91       	elpm	r31, Z
- 2c6:	e0 2d       	mov	r30, r0
- 2c8:	19 94       	eijmp
+000002ac <_ZN11SoundDriver9PlaySoundEh>:
+	if (initVolume < 0) initVolume = 0; // Limits to min volume of 0
+	if (initVolume > 30) initVolume = 30; // Limits to max volume of 30
+	SetVolume(initVolume);
+}
 
-000002ca <_exit>:
- 2ca:	f8 94       	cli
+void SoundDriver::PlaySound(unsigned char soundIndex) {
+ 2ac:	cf 93       	push	r28
+ 2ae:	df 93       	push	r29
+ 2b0:	c6 2f       	mov	r28, r22
+	SendChar(0x7E);
+ 2b2:	8e e7       	ldi	r24, 0x7E	; 126
+ 2b4:	82 d0       	rcall	.+260    	; 0x3ba <_Z8SendCharc>
+	SendChar(0x03);
+ 2b6:	83 e0       	ldi	r24, 0x03	; 3
+ 2b8:	80 d0       	rcall	.+256    	; 0x3ba <_Z8SendCharc>
+	SendChar(0x00);
+ 2ba:	80 e0       	ldi	r24, 0x00	; 0
+ 2bc:	7e d0       	rcall	.+252    	; 0x3ba <_Z8SendCharc>
+	SendChar(0x00);
+ 2be:	80 e0       	ldi	r24, 0x00	; 0
+ 2c0:	7c d0       	rcall	.+248    	; 0x3ba <_Z8SendCharc>
+	SendChar(soundIndex);
+ 2c2:	8c 2f       	mov	r24, r28
+ 2c4:	7a d0       	rcall	.+244    	; 0x3ba <_Z8SendCharc>
+ 2c6:	d0 e0       	ldi	r29, 0x00	; 0
+	
+	// We are calculating checksum, which is used for detecting errors in the code.
+	unsigned int checksum = 0xFFFF - (0x03+soundIndex) + 1;
+ 2c8:	23 96       	adiw	r28, 0x03	; 3
+ 2ca:	d1 95       	neg	r29
+ 2cc:	c1 95       	neg	r28
+	unsigned char ck_sum1 = checksum>>8;
+	unsigned char ck_sum2 = checksum & 0xFF;
+	SendChar(ck_sum1);
+ 2ce:	d1 09       	sbc	r29, r1
+ 2d0:	8d 2f       	mov	r24, r29
+	SendChar(ck_sum2);
+ 2d2:	73 d0       	rcall	.+230    	; 0x3ba <_Z8SendCharc>
+ 2d4:	8c 2f       	mov	r24, r28
+ 2d6:	71 d0       	rcall	.+226    	; 0x3ba <_Z8SendCharc>
+	SendChar(0xEF);
+ 2d8:	8f ee       	ldi	r24, 0xEF	; 239
+ 2da:	6f d0       	rcall	.+222    	; 0x3ba <_Z8SendCharc>
+ 2dc:	df 91       	pop	r29
+}
+ 2de:	cf 91       	pop	r28
+ 2e0:	08 95       	ret
 
-000002cc <__stop_program>:
- 2cc:	ff cf       	rjmp	.-2      	; 0x2cc <__stop_program>
+000002e2 <_ZN11SoundDriver9SetVolumeEh>:
+ 2e2:	cf 93       	push	r28
+
+void SoundDriver::SetVolume(unsigned char volume) {
+ 2e4:	df 93       	push	r29
+ 2e6:	c6 2f       	mov	r28, r22
+	SendChar(0x7E);
+ 2e8:	8e e7       	ldi	r24, 0x7E	; 126
+ 2ea:	67 d0       	rcall	.+206    	; 0x3ba <_Z8SendCharc>
+	SendChar(0x06);
+ 2ec:	86 e0       	ldi	r24, 0x06	; 6
+ 2ee:	65 d0       	rcall	.+202    	; 0x3ba <_Z8SendCharc>
+	SendChar(0x00);
+ 2f0:	80 e0       	ldi	r24, 0x00	; 0
+ 2f2:	63 d0       	rcall	.+198    	; 0x3ba <_Z8SendCharc>
+	SendChar(0x00);
+ 2f4:	80 e0       	ldi	r24, 0x00	; 0
+ 2f6:	61 d0       	rcall	.+194    	; 0x3ba <_Z8SendCharc>
+	SendChar(volume);
+ 2f8:	8c 2f       	mov	r24, r28
+ 2fa:	5f d0       	rcall	.+190    	; 0x3ba <_Z8SendCharc>
+ 2fc:	d0 e0       	ldi	r29, 0x00	; 0
+	
+	unsigned int checksum = 0xFFFF - (0x06+volume) + 1;
+ 2fe:	26 96       	adiw	r28, 0x06	; 6
+ 300:	d1 95       	neg	r29
+ 302:	c1 95       	neg	r28
+	unsigned char ck_sum1 = checksum>>8;
+	unsigned char ck_sum2 = checksum & 0xFF;
+	SendChar(ck_sum1);
+ 304:	d1 09       	sbc	r29, r1
+ 306:	8d 2f       	mov	r24, r29
+	SendChar(ck_sum2);
+ 308:	58 d0       	rcall	.+176    	; 0x3ba <_Z8SendCharc>
+ 30a:	8c 2f       	mov	r24, r28
+ 30c:	56 d0       	rcall	.+172    	; 0x3ba <_Z8SendCharc>
+	SendChar(0xF5);
+ 30e:	85 ef       	ldi	r24, 0xF5	; 245
+ 310:	54 d0       	rcall	.+168    	; 0x3ba <_Z8SendCharc>
+ 312:	8f ee       	ldi	r24, 0xEF	; 239
+	SendChar(0xEF);
+ 314:	52 d0       	rcall	.+164    	; 0x3ba <_Z8SendCharc>
+ 316:	df 91       	pop	r29
+ 318:	cf 91       	pop	r28
+ 31a:	08 95       	ret
+
+0000031c <_ZN11SoundDriverC1Eh>:
+ 31c:	0f 93       	push	r16
+ 31e:	1f 93       	push	r17
+#include "SoundDriver.h"
+
+SoundDriver::SoundDriver(unsigned char initVolume) {
+ 320:	cf 93       	push	r28
+ 322:	8c 01       	movw	r16, r24
+ 324:	c6 2f       	mov	r28, r22
+	InitUART(9600, 8);
+ 326:	48 e0       	ldi	r20, 0x08	; 8
+ 328:	60 e8       	ldi	r22, 0x80	; 128
+ 32a:	75 e2       	ldi	r23, 0x25	; 37
+ 32c:	80 e0       	ldi	r24, 0x00	; 0
+ 32e:	90 e0       	ldi	r25, 0x00	; 0
+ 330:	0a d0       	rcall	.+20     	; 0x346 <_Z8InitUARTmh>
+	if (initVolume < 0) initVolume = 0; // Limits to min volume of 0
+	if (initVolume > 30) initVolume = 30; // Limits to max volume of 30
+ 332:	cf 31       	cpi	r28, 0x1F	; 31
+ 334:	08 f0       	brcs	.+2      	; 0x338 <_ZN11SoundDriverC1Eh+0x1c>
+ 336:	ce e1       	ldi	r28, 0x1E	; 30
+	SetVolume(initVolume);
+ 338:	6c 2f       	mov	r22, r28
+ 33a:	c8 01       	movw	r24, r16
+ 33c:	d2 df       	rcall	.-92     	; 0x2e2 <_ZN11SoundDriver9SetVolumeEh>
+}
+ 33e:	cf 91       	pop	r28
+ 340:	1f 91       	pop	r17
+ 342:	0f 91       	pop	r16
+ 344:	08 95       	ret
+
+00000346 <_Z8InitUARTmh>:
+}
+
+char ReadChar() {
+	while (!CharReady()) {}
+	return UDR0; 
+}
+ 346:	0f 93       	push	r16
+ 348:	1f 93       	push	r17
+ 34a:	8b 01       	movw	r16, r22
+ 34c:	9c 01       	movw	r18, r24
+ 34e:	0c 52       	subi	r16, 0x2C	; 44
+ 350:	11 40       	sbci	r17, 0x01	; 1
+ 352:	21 09       	sbc	r18, r1
+ 354:	31 09       	sbc	r19, r1
+ 356:	05 3d       	cpi	r16, 0xD5	; 213
+ 358:	10 4c       	sbci	r17, 0xC0	; 192
+ 35a:	21 40       	sbci	r18, 0x01	; 1
+ 35c:	31 05       	cpc	r19, r1
+ 35e:	50 f5       	brcc	.+84     	; 0x3b4 <_Z8InitUARTmh+0x6e>
+ 360:	45 30       	cpi	r20, 0x05	; 5
+ 362:	40 f1       	brcs	.+80     	; 0x3b4 <_Z8InitUARTmh+0x6e>
+ 364:	49 30       	cpi	r20, 0x09	; 9
+ 366:	30 f5       	brcc	.+76     	; 0x3b4 <_Z8InitUARTmh+0x6e>
+ 368:	28 e1       	ldi	r18, 0x18	; 24
+ 36a:	20 93 c1 00 	sts	0x00C1, r18	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7c00c1>
+ 36e:	45 50       	subi	r20, 0x05	; 5
+ 370:	44 0f       	add	r20, r20
+ 372:	40 93 c2 00 	sts	0x00C2, r20	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7c00c2>
+ 376:	dc 01       	movw	r26, r24
+ 378:	cb 01       	movw	r24, r22
+ 37a:	88 0f       	add	r24, r24
+ 37c:	99 1f       	adc	r25, r25
+ 37e:	aa 1f       	adc	r26, r26
+ 380:	bb 1f       	adc	r27, r27
+ 382:	88 0f       	add	r24, r24
+ 384:	99 1f       	adc	r25, r25
+ 386:	aa 1f       	adc	r26, r26
+ 388:	bb 1f       	adc	r27, r27
+ 38a:	9c 01       	movw	r18, r24
+ 38c:	ad 01       	movw	r20, r26
+ 38e:	22 0f       	add	r18, r18
+ 390:	33 1f       	adc	r19, r19
+ 392:	44 1f       	adc	r20, r20
+ 394:	55 1f       	adc	r21, r21
+ 396:	22 0f       	add	r18, r18
+ 398:	33 1f       	adc	r19, r19
+ 39a:	44 1f       	adc	r20, r20
+ 39c:	55 1f       	adc	r21, r21
+ 39e:	60 e0       	ldi	r22, 0x00	; 0
+ 3a0:	74 e2       	ldi	r23, 0x24	; 36
+ 3a2:	84 ef       	ldi	r24, 0xF4	; 244
+ 3a4:	90 e0       	ldi	r25, 0x00	; 0
+ 3a6:	10 d0       	rcall	.+32     	; 0x3c8 <__udivmodsi4>
+ 3a8:	21 50       	subi	r18, 0x01	; 1
+ 3aa:	31 09       	sbc	r19, r1
+ 3ac:	30 93 c5 00 	sts	0x00C5, r19	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7c00c5>
+ 3b0:	20 93 c4 00 	sts	0x00C4, r18	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7c00c4>
+ 3b4:	1f 91       	pop	r17
+ 3b6:	0f 91       	pop	r16
+ 3b8:	08 95       	ret
+
+000003ba <_Z8SendCharc>:
+
+void SendChar(char character) {
+	while ((UCSR0A & 0b00100000) == 0) {} 
+ 3ba:	90 91 c0 00 	lds	r25, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7c00c0>
+ 3be:	95 ff       	sbrs	r25, 5
+ 3c0:	fc cf       	rjmp	.-8      	; 0x3ba <_Z8SendCharc>
+	UDR0 = character;
+ 3c2:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7c00c6>
+ 3c6:	08 95       	ret
+
+000003c8 <__udivmodsi4>:
+ 3c8:	a1 e2       	ldi	r26, 0x21	; 33
+ 3ca:	1a 2e       	mov	r1, r26
+ 3cc:	aa 1b       	sub	r26, r26
+ 3ce:	bb 1b       	sub	r27, r27
+ 3d0:	fd 01       	movw	r30, r26
+ 3d2:	0d c0       	rjmp	.+26     	; 0x3ee <__udivmodsi4_ep>
+
+000003d4 <__udivmodsi4_loop>:
+ 3d4:	aa 1f       	adc	r26, r26
+ 3d6:	bb 1f       	adc	r27, r27
+ 3d8:	ee 1f       	adc	r30, r30
+ 3da:	ff 1f       	adc	r31, r31
+ 3dc:	a2 17       	cp	r26, r18
+ 3de:	b3 07       	cpc	r27, r19
+ 3e0:	e4 07       	cpc	r30, r20
+ 3e2:	f5 07       	cpc	r31, r21
+ 3e4:	20 f0       	brcs	.+8      	; 0x3ee <__udivmodsi4_ep>
+ 3e6:	a2 1b       	sub	r26, r18
+ 3e8:	b3 0b       	sbc	r27, r19
+ 3ea:	e4 0b       	sbc	r30, r20
+ 3ec:	f5 0b       	sbc	r31, r21
+
+000003ee <__udivmodsi4_ep>:
+ 3ee:	66 1f       	adc	r22, r22
+ 3f0:	77 1f       	adc	r23, r23
+ 3f2:	88 1f       	adc	r24, r24
+ 3f4:	99 1f       	adc	r25, r25
+ 3f6:	1a 94       	dec	r1
+ 3f8:	69 f7       	brne	.-38     	; 0x3d4 <__udivmodsi4_loop>
+ 3fa:	60 95       	com	r22
+ 3fc:	70 95       	com	r23
+ 3fe:	80 95       	com	r24
+ 400:	90 95       	com	r25
+ 402:	9b 01       	movw	r18, r22
+ 404:	ac 01       	movw	r20, r24
+ 406:	bd 01       	movw	r22, r26
+ 408:	cf 01       	movw	r24, r30
+ 40a:	08 95       	ret
+
+0000040c <__tablejump2__>:
+ 40c:	ee 0f       	add	r30, r30
+ 40e:	ff 1f       	adc	r31, r31
+ 410:	88 1f       	adc	r24, r24
+ 412:	8b bf       	out	0x3b, r24	; 59
+ 414:	07 90       	elpm	r0, Z+
+ 416:	f6 91       	elpm	r31, Z
+ 418:	e0 2d       	mov	r30, r0
+ 41a:	19 94       	eijmp
+
+0000041c <_exit>:
+ 41c:	f8 94       	cli
+
+0000041e <__stop_program>:
+ 41e:	ff cf       	rjmp	.-2      	; 0x41e <__stop_program>
