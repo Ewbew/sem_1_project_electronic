@@ -39,13 +39,14 @@ Motor::Motor():speed_(0), forward_direction_(true) {
 }
 
 void Motor::set_speed(int speed){
+	speed_ = speed;
 	OCR1A = 1024 - ((1024/100)*speed);
 }
 	
 void Motor::set_forward_direction(bool forward_direction){
 	if(forward_direction){ // LSB is being set (the output pin)
-		PORTC |= forward_direction_;
+		PORTC |= 0b00000001;
 	} else { // This just keep all of the other bits in PORTC the same, while the LSB is being cleared (the output pin)
-		PORTC &= ~(!forward_direction_ << 0 );
+		PORTC &= 0b11111110;
 	}
 }
