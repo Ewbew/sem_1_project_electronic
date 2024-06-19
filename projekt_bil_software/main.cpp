@@ -54,34 +54,51 @@ ISR(INT0_vect){
 	sound.PlaySound(1);
 	lights.set_lights(control.get_lights_state());
 	motor.set_speed(control.get_speed());
-	reti();
 }
 
 
 ISR(INT1_vect){
 	handle_interrupt();
-	reti();
 }
 
 
 ISR(INT2_vect){
 	handle_interrupt();
-	reti();
 }
 
 int main(void)
 {
-	// Opsætning af ISR'er; alle sættes til at aktivere korresponderende ISR ved rising edge
-	EICRA = 0b00111111;
+
+	// Vi sætter de relevante porte (forskellige outputs fra programmet, bl.a. PWM signal) til at være udgange:
+	// Motor PWM (pin 11):
+	DDRB = 0b00100000;
+
+	// bool is_forward_direction (pin 37):
+	DDRC = 0b00000001;
 	
+	// Interrupts input
+	DDRD &= 0b11111000;
+	
+	// Making sure that the PORTD is not high
+	PORTD = 0x00;
+
+	// For- og bag LED
+	DDRE = 0b00011000;
+	
+	// Opsætning af ISR'er; alle sættes til at aktivere korresponderende ISR ved falling edge
+	EICRA = 0b00101010;
+		
 	// Vi enabler de tre interrupts
 	EIMSK |= 0b00000111;
-	
 	// Enable global interrupt flag:
 	sei();
 
 	while (!start);
 	{}
+		
+	EIMSK &= 0b11111110;
+	
+	
 	
     // Her skal vi konstant køre
     while (1) 

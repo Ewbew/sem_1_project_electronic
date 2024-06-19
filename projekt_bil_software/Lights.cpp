@@ -22,9 +22,7 @@ ISR(TIMER4_OVF_vect){
 	TIFR4 = 0b00000001;
 	
 	// Clearing the timer 4 overflow interrut:
-	TIMSK4 = 0x00;
-	
-	reti();
+	TIMSK4 = 0x00;	
 }
 
 
