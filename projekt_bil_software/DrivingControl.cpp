@@ -12,35 +12,35 @@ const int DrivingControl::SPEED_LEVELS[] = {100, 90, 65, 50, 90, 50, 50, 50, 80,
 const int DrivingControl::MAX_COUNTER = sizeof(SPEED_LEVELS) / sizeof(SPEED_LEVELS[0]);
 
 
-DrivingControl::DrivingControl(): counter(0) {}
+DrivingControl::DrivingControl(): counter_(0) {}
 
 
 // OBS: Disse værdier skal ændres indtil at bilen kører igennem uden for mange fejl; de bestemmes gennem testkørlser.
 // OBS: Det kan være, at bilen bliver nødt til at få sat speed til 0, i stedet for bare at skifte retning.
 int DrivingControl::get_speed() {
-	if (counter >= 0 && counter < MAX_COUNTER) {
-		return SPEED_LEVELS[counter];
+	if (counter_ >= 0 && counter_ < MAX_COUNTER) {
+		return SPEED_LEVELS[counter_];
 		} else {
 		return -1;
 	}
 }
 
 void DrivingControl::increment_counter(){
-	counter++;
+	counter_++;
+}
+
+int DrivingControl::get_counter(){
+	return counter_;
 }
 
 bool DrivingControl::is_forward_direction() {
-	return counter < 6 || counter >= 8;
+	return counter_ < 6 || counter_ >= 8;
 }
 
-
-// if-statements følger samme logik som get_speed()
 bool DrivingControl::get_lights_state() {
-	return counter < 6 || (counter >= 7 && counter < 11);
+	return counter_ < 6 || (counter_ >= 7 && counter_ < 11);
 }
 
-
-// TO - DO: Rewrite code, so we don't decrement and then increment counter_pointer – can result in major errors!
 bool DrivingControl::get_brake_state(){
 	int current_speed = get_speed();
 	bool current_direction = is_forward_direction();
@@ -52,8 +52,4 @@ bool DrivingControl::get_brake_state(){
 	previous_direction_ = current_direction;
 
 	return should_brake;
-	// Man kan specificere at den bremser ud fra counter_pointer
-	// Ellers kan man have en privat variabel, der husker tidligere speed, 
-	// og ud fra den og nuværende speed afgøre, om der bliver bremset eller ej.
-
 }

@@ -9,12 +9,12 @@
 
 class DrivingControl{
 	private:
+		int counter_;
 		int previous_speed_;
 		bool previous_direction_;
 		static const int SPEED_LEVELS[]; 
 		static const int MAX_COUNTER;
 	public:
-		int counter;
 
 		DrivingControl();
 
@@ -33,5 +33,7 @@ class DrivingControl{
 		bool get_brake_state();
 		
 		void increment_counter();
+		
+		int get_counter();
 	
 };
